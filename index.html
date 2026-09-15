@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Personal Dashboard</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fff7fa;
+            color: #173f3b;
+        }
+
+
+        /* ==================== */
+        /* HEADER */
+        /* ==================== */
+
+        header {
+            margin: 20px;
+            height: 300px;
+
+            border-radius: 25px;
+            overflow: hidden;
+
+            background-image:
+                url("https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&w=1400&q=80");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            position: relative;
+        }
+
+
+        header::before {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background: rgba(255, 170, 205, 0.45);
+        }
+
+
+        .hero-text {
+            position: relative;
+            z-index: 1;
+
+            color: white;
+
+            text-shadow: 0 2px 5px #75445b;
+        }
+
+
+        .hero-text h1 {
+            font-size: 42px;
+            margin: 0 0 10px;
+        }
+
+
+        .hero-text p {
+            font-size: 18px;
+        }
+
+
+        /* ==================== */
+        /* NAVIGATION */
+        /* ==================== */
+
+        nav {
+            text-align: center;
+            margin: 20px;
+        }
+
+
+        nav a {
+            display: inline-block;
+
+            text-decoration: none;
+
+            background: #e88caf;
+            color: white;
+
+            padding: 12px 25px;
+            margin: 5px;
+
+            border-radius: 20px;
+
+            font-weight: bold;
+        }
+
+
+        nav a:hover {
+            background: #d86f96;
+        }
+
+
+        /* ==================== */
+        /* DATE */
+        /* ==================== */
+
+        .date {
+            text-align: center;
+
+            font-size: 17px;
+
+            margin: 20px;
+
+            color: #80616e;
+        }
+
+
+        /* ==================== */
+        /* MAIN */
+        /* ==================== */
+
+        .container {
+            max-width: 1100px;
+
+            margin: auto;
+
+            padding: 10px 20px 40px;
+        }
+
+
+        /* ==================== */
+        /* CARD */
+        /* ==================== */
+
+        .card {
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 30px;
+
+            margin: 25px 0;
+
+            box-shadow:
+                0 5px 20px rgba(200, 100, 150, 0.12);
+        }
+
+
+        .card h2 {
+            color: #e06e98;
+
+            margin-top: 0;
+
+            font-size: 32px;
+        }
+
+
+        .card > p {
+            font-size: 18px;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* ==================== */
+        /* CITY GRID */
+        /* ==================== */
+
+        .cities {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 20px;
+        }
+
+
+        .city {
+            background: #fff0f6;
+
+            padding: 25px;
+
+            border-radius: 18px;
+        }
+
+
+        .city h3 {
+            color: #d85c8d;
+
+            font-size: 22px;
+        }
+
+
+        /* ==================== */
+        /* WEATHER */
+        /* ==================== */
+
+        .weather {
+            font-size: 18px;
+
+            line-height: 1.8;
+        }
+
+
+        .weather-icon {
+            font-size: 45px;
+
+            margin-bottom: 5px;
+        }
+
+
+        /* ==================== */
+        /* CURRENCY */
+        /* ==================== */
+
+        .currency-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 25px;
+
+            margin-top: 20px;
+        }
+
+
+        .currency-box {
+            background: white;
+
+            border: 1px solid #ddd;
+
+            border-radius: 20px;
+
+            padding: 35px;
+        }
+
+
+        .currency-box h3 {
+            margin: 0 0 25px;
+
+            font-size: 22px;
+
+            color: #173f3b;
+        }
+
+
+        .currency-value {
+            font-size: 32px;
+
+            font-weight: bold;
+
+            color: #173f3b;
+        }
+
+
+        /* ==================== */
+        /* CALCULATOR */
+        /* ==================== */
+
+        .calculator {
+            margin-top: 30px;
+
+            background: #fff0f6;
+
+            padding: 25px;
+
+            border-radius: 20px;
+
+            text-align: center;
+        }
+
+
+        .calculator h3 {
+            color: #d85c8d;
+
+            font-size: 24px;
+
+            margin-top: 0;
+        }
+
+
+        .calculator p {
+            font-size: 16px;
+        }
+
+
+        .calculator-input {
+            margin-top: 20px;
+        }
+
+
+        .calculator input {
+            width: 220px;
+
+            padding: 14px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 12px;
+
+            font-size: 16px;
+        }
+
+
+        .calculator button {
+            padding: 14px 25px;
+
+            margin-left: 8px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: #e88caf;
+
+            color: white;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .calculator button:hover {
+            background: #d86f96;
+        }
+
+
+        .calculation-results {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 15px;
+
+            margin-top: 25px;
+        }
+
+
+        .calculation-results div {
+            background: white;
+
+            padding: 20px;
+
+            border-radius: 15px;
+
+            font-size: 18px;
+        }
+
+
+        .calculation-results span {
+            display: block;
+
+            margin-top: 8px;
+
+            font-size: 24px;
+
+            font-weight: bold;
+
+            color: #173f3b;
+        }
+
+
+        .currency-source {
+            text-align: center;
+
+            margin-top: 30px;
+
+            color: #999;
+
+            font-size: 14px;
+        }
+
+
+        /* ==================== */
+        /* FOOTER */
+        /* ==================== */
+
+        footer {
+            text-align: center;
+
+            padding: 25px;
+
+            color: #9a7182;
+        }
+
+
+        /* ==================== */
+        /* MOBILE */
+        /* ==================== */
+
+        @media (max-width: 700px) {
+
+            header {
+                height: 250px;
+
+                margin: 10px;
+            }
+
+
+            .hero-text h1 {
+                font-size: 30px;
+            }
+
+
+            .cities {
+                grid-template-columns: 1fr;
+            }
+
+
+            .currency-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            nav a {
+                padding: 10px 15px;
+            }
+
+
+            .currency-value {
+                font-size: 26px;
+            }
+
+
+            .calculator input {
+                width: 100%;
+
+                margin-bottom: 10px;
+            }
+
+
+            .calculator button {
+                width: 100%;
+
+                margin-left: 0;
+            }
+
+
+            .calculation-results {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================== -->
+    <!-- HEADER -->
+    <!-- ==================== -->
+
+    <header>
+
+        <div class="hero-text">
+
+            <h1>
+                ☁️ My Personal Dashboard
+            </h1>
+
+            <p>
+                Weather • Time • Currency
+            </p>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ==================== -->
+    <!-- NAVIGATION -->
+    <!-- ==================== -->
+
+    <nav>
+
+        <a href="#weather">
+            🌤️ Weather
+        </a>
+
+        <a href="#time">
+            🕐 Time
+        </a>
+
+        <a href="#currency">
+            💰 Currency
+        </a>
+
+    </nav>
+
+
+
+    <!-- ==================== -->
+    <!-- DATE -->
+    <!-- ==================== -->
+
+    <div
+        class="date"
+        id="date"
+    >
+        Loading date...
+    </div>
+
+
+
+    <div class="container">
+
+
+        <!-- ==================== -->
+        <!-- WEATHER -->
+        <!-- ==================== -->
+
+        <div
+            class="card"
+            id="weather"
+        >
+
+            <h2>
+                🌤️ Weather
+            </h2>
+
+            <p>
+                Current weather in Chiang Mai, Yangon, Tokyo and Seoul.
+            </p>
+
+
+            <div class="cities">
+
+
+                <!-- CHIANG MAI -->
+
+                <div class="city">
+
+                    <h3>
+                        🇹🇭 Chiang Mai
+                    </h3>
+
+                    <div
+                        class="weather"
+                        id="chiangMaiWeather"
+                    >
+                        Loading...
+                    </div>
+
+                </div>
+
+
+                <!-- YANGON -->
+
+                <div class="city">
+
+                    <h3>
+                        🇲🇲 Yangon
+                    </h3>
+
+                    <div
+                        class="weather"
+                        id="yangonWeather"
+                    >
+                        Loading...
+                    </div>
+
+                </div>
+
+
+                <!-- TOKYO -->
+
+                <div class="city">
+
+                    <h3>
+                        🇯🇵 Tokyo
+                    </h3>
+
+                    <div
+                        class="weather"
+                        id="tokyoWeather"
+                    >
+                        Loading...
+                    </div>
+
+                </div>
+
+
+                <!-- SEOUL -->
+
+                <div class="city">
+
+                    <h3>
+                        🇰🇷 Seoul
+                    </h3>
+
+                    <div
+                        class="weather"
+                        id="seoulWeather"
+                    >
+                        Loading...
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==================== -->
+        <!-- TIME -->
+        <!-- ==================== -->
+
+        <div
+            class="card"
+            id="time"
+        >
+
+            <h2>
+                🕐 World Time
+            </h2>
+
+            <p>
+                Current local time in each city.
+            </p>
+
+
+            <div class="cities">
+
+
+                <!-- CHIANG MAI -->
+
+                <div class="city">
+
+                    <h3>
+                        🇹🇭 Chiang Mai
+                    </h3>
+
+                    <div
+                        class="weather"
+                        id="chiangMaiTime"
+                    >
+                        Loading...
+                    </div>
+
+                </div>
+
+
+                <!-- YANGON -->
+
+                <div class="city">
+
+                    <h3>
+                        🇲🇲 Yangon
+                    </h3>
+
+                    <div
+                        class="weather"
+                        id="yangonTime"
+                    >
+                        Loading...
+                    </div>
+
+                </div>
+
+
+                <!-- TOKYO -->
+
+                <div class="city">
+
+                    <h3>
+                        🇯🇵 Tokyo
+                    </h3>
+
+                    <div
+                        class="weather"
+                        id="tokyoTime"
+                    >
+                        Loading...
+                    </div>
+
+                </div>
+
+
+                <!-- SEOUL -->
+
+                <div class="city">
+
+                    <h3>
+                        🇰🇷 Seoul
+                    </h3>
+
+                    <div
+                        class="weather"
+                        id="seoulTime"
+                    >
+                        Loading...
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==================== -->
+        <!-- CURRENCY -->
+        <!-- ==================== -->
+
+        <div
+            class="card"
+            id="currency"
+        >
+
+            <h2>
+                Currency
+            </h2>
+
+            <p>
+                Everyday USD conversions for Thailand, Myanmar, Japan and Korea.
+            </p>
+
+
+            <div class="currency-grid">
+
+
+                <!-- USD TO THB -->
+
+                <div class="currency-box">
+
+                    <h3>
+                        1 USD → THB 🇹🇭
+                    </h3>
+
+                    <div
+                        class="currency-value"
+                        id="usdThb"
+                    >
+                        Loading...
+                    </div>
+
+                </div>
+
+
+                <!-- USD TO MMK -->
+
+                <div class="currency-box">
+
+                    <h3>
+                        1 USD → MMK 🇲🇲
+                    </h3>
+
+                    <div
+                        class="currency-value"
+                        id="usdMmk"
+                    >
+                        Loading...
+                    </div>
+
+                </div>
+
+
+                <!-- USD TO JPY -->
+
+                <div class="currency-box">
+
+                    <h3>
+                        1 USD → JPY 🇯🇵
+                    </h3>
+
+                    <div
+                        class="currency-value"
+                        id="usdJpy"
+                    >
+                        Loading...
+                    </div>
+
+                </div>
+
+
+                <!-- USD TO KRW -->
+
+                <div class="currency-box">
+
+                    <h3>
+                        1 USD → KRW 🇰🇷
+                    </h3>
+
+                    <div
+                        class="currency-value"
+                        id="usdKrw"
+                    >
+                        Loading...
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ==================== -->
+            <!-- CALCULATOR -->
+            <!-- ==================== -->
+
+            <div class="calculator">
+
+                <h3>
+                    💱 Currency Calculator
+                </h3>
+
+                <p>
+                    Enter an amount in USD to calculate the value in each currency.
+                </p>
+
+
+                <div class="calculator-input">
+
+                    <input
+                        type="number"
+                        id="usdAmount"
+                        value="1"
+                        min="0"
+                        placeholder="Enter USD"
+                        oninput="calculateCurrency()"
+                    >
+
+
+                    <button onclick="calculateCurrency()">
+                        Calculate
+                    </button>
+
+                </div>
+
+
+                <div class="calculation-results">
+
+
+                    <!-- THB -->
+
+                    <div>
+
+                        🇹🇭 <b>THB</b>
+
+                        <span id="calcThb">
+                            0.00 THB
+                        </span>
+
+                    </div>
+
+
+                    <!-- MMK -->
+
+                    <div>
+
+                        🇲🇲 <b>MMK</b>
+
+                        <span id="calcMmk">
+                            0.00 MMK
+                        </span>
+
+                    </div>
+
+
+                    <!-- JPY -->
+
+                    <div>
+
+                        🇯🇵 <b>JPY</b>
+
+                        <span id="calcJpy">
+                            0.00 JPY
+                        </span>
+
+                    </div>
+
+
+                    <!-- KRW -->
+
+                    <div>
+
+                        🇰🇷 <b>KRW</b>
+
+                        <span id="calcKrw">
+                            0.00 KRW
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <p class="currency-source">
+                Data by ExchangeRate API
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ==================== -->
+    <!-- FOOTER -->
+    <!-- ==================== -->
+
+    <footer>
+
+        💗 My Personal Dashboard
+
+    </footer>
+
+
+
+    <script>
+
+
+        /* ==================== */
+        /* DATE */
+        /* ==================== */
+
+        function showDate() {
+
+            let now = new Date();
+
+
+            document.getElementById("date").innerHTML =
+
+                now.toLocaleDateString(
+                    "en-US",
+                    {
+                        weekday: "long",
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric"
+                    }
+                );
+
+        }
+
+
+        showDate();
+
+
+
+        /* ==================== */
+        /* TIME */
+        /* ==================== */
+
+        function updateTime() {
+
+
+            let chiangMai =
+                new Date().toLocaleTimeString(
+                    "en-US",
+                    {
+                        timeZone: "Asia/Bangkok",
+
+                        hour: "2-digit",
+
+                        minute: "2-digit",
+
+                        second: "2-digit"
+                    }
+                );
+
+
+            let yangon =
+                new Date().toLocaleTimeString(
+                    "en-US",
+                    {
+                        timeZone: "Asia/Yangon",
+
+                        hour: "2-digit",
+
+                        minute: "2-digit",
+
+                        second: "2-digit"
+                    }
+                );
+
+
+            let tokyo =
+                new Date().toLocaleTimeString(
+                    "en-US",
+                    {
+                        timeZone: "Asia/Tokyo",
+
+                        hour: "2-digit",
+
+                        minute: "2-digit",
+
+                        second: "2-digit"
+                    }
+                );
+
+
+            let seoul =
+                new Date().toLocaleTimeString(
+                    "en-US",
+                    {
+                        timeZone: "Asia/Seoul",
+
+                        hour: "2-digit",
+
+                        minute: "2-digit",
+
+                        second: "2-digit"
+                    }
+                );
+
+
+            document.getElementById(
+                "chiangMaiTime"
+            ).innerHTML =
+                "🕐 " + chiangMai;
+
+
+            document.getElementById(
+                "yangonTime"
+            ).innerHTML =
+                "🕐 " + yangon;
+
+
+            document.getElementById(
+                "tokyoTime"
+            ).innerHTML =
+                "🕐 " + tokyo;
+
+
+            document.getElementById(
+                "seoulTime"
+            ).innerHTML =
+                "🕐 " + seoul;
+
+        }
+
+
+        updateTime();
+
+
+        setInterval(
+            updateTime,
+            1000
+        );
+
+
+
+        /* ==================== */
+        /* WEATHER */
+        /* ==================== */
+
+        async function getWeather(
+            latitude,
+            longitude,
+            elementId
+        ) {
+
+            try {
+
+
+                let url =
+
+                    "https://api.open-meteo.com/v1/forecast" +
+
+                    "?latitude=" + latitude +
+
+                    "&longitude=" + longitude +
+
+                    "&current=temperature_2m,weather_code" +
+
+                    "&daily=temperature_2m_max,temperature_2m_min" +
+
+                    "&timezone=auto";
+
+
+                let response =
+                    await fetch(url);
+
+
+                let data =
+                    await response.json();
+
+
+                let temp =
+                    data.current.temperature_2m;
+
+
+                let code =
+                    data.current.weather_code;
+
+
+                let max =
+                    data.daily.temperature_2m_max[0];
+
+
+                let min =
+                    data.daily.temperature_2m_min[0];
+
+
+                let icon = "🌤️";
+
+
+                if (code == 0) {
+
+                    icon = "☀️";
+
+                }
+
+                else if (code <= 3) {
+
+                    icon = "🌤️";
+
+                }
+
+                else if (code <= 48) {
+
+                    icon = "🌫️";
+
+                }
+
+                else if (code <= 67) {
+
+                    icon = "🌧️";
+
+                }
+
+                else if (code <= 82) {
+
+                    icon = "🌦️";
+
+                }
+
+                else {
+
+                    icon = "⛈️";
+
+                }
+
+
+                document.getElementById(
+                    elementId
+                ).innerHTML =
+
+                    "<div class='weather-icon'>" +
+
+                    icon +
+
+                    "</div>" +
+
+                    "Temperature: <b>" +
+
+                    temp +
+
+                    "°C</b><br>" +
+
+                    "Today: " +
+
+                    min +
+
+                    "°C - " +
+
+                    max +
+
+                    "°C";
+
+
+            }
+
+            catch (error) {
+
+
+                document.getElementById(
+                    elementId
+                ).innerHTML =
+
+                    "Weather information unavailable.";
+
+            }
+
+        }
+
+
+
+        /* CHIANG MAI */
+
+        getWeather(
+            18.7883,
+            98.9853,
+            "chiangMaiWeather"
+        );
+
+
+        /* YANGON */
+
+        getWeather(
+            16.8661,
+            96.1561,
+            "yangonWeather"
+        );
+
+
+        /* TOKYO */
+
+        getWeather(
+            35.6762,
+            139.6503,
+            "tokyoWeather"
+        );
+
+
+        /* SEOUL */
+
+        getWeather(
+            37.5665,
+            126.9780,
+            "seoulWeather"
+        );
+
+
+
+        /* ==================== */
+        /* CURRENCY */
+        /* ==================== */
+
+        let exchangeRates = {};
+
+
+
+        async function getCurrency() {
+
+            try {
+
+
+                let response =
+
+                    await fetch(
+                        "https://open.er-api.com/v6/latest/USD"
+                    );
+
+
+                let data =
+                    await response.json();
+
+
+                exchangeRates =
+                    data.rates;
+
+
+
+                /* USD → THB */
+
+                document.getElementById(
+                    "usdThb"
+                ).innerHTML =
+
+                    exchangeRates.THB.toFixed(2) +
+
+                    " THB";
+
+
+
+                /* USD → MMK */
+
+                document.getElementById(
+                    "usdMmk"
+                ).innerHTML =
+
+                    exchangeRates.MMK.toFixed(2) +
+
+                    " MMK";
+
+
+
+                /* USD → JPY */
+
+                document.getElementById(
+                    "usdJpy"
+                ).innerHTML =
+
+                    exchangeRates.JPY.toFixed(2) +
+
+                    " JPY";
+
+
+
+                /* USD → KRW */
+
+                document.getElementById(
+                    "usdKrw"
+                ).innerHTML =
+
+                    exchangeRates.KRW.toFixed(2) +
+
+                    " KRW";
+
+
+
+                /* Start calculator */
+
+                calculateCurrency();
+
+            }
+
+
+            catch (error) {
+
+
+                document.getElementById(
+                    "usdThb"
+                ).innerHTML =
+                    "Unavailable";
+
+
+                document.getElementById(
+                    "usdMmk"
+                ).innerHTML =
+                    "Unavailable";
+
+
+                document.getElementById(
+                    "usdJpy"
+                ).innerHTML =
+                    "Unavailable";
+
+
+                document.getElementById(
+                    "usdKrw"
+                ).innerHTML =
+                    "Unavailable";
+
+            }
+
+        }
+
+
+
+        /* ==================== */
+        /* CURRENCY CALCULATOR */
+        /* ==================== */
+
+        function calculateCurrency() {
+
+
+            let amount =
+
+                Number(
+                    document.getElementById(
+                        "usdAmount"
+                    ).value
+                );
+
+
+            if (
+                isNaN(amount) ||
+                amount < 0 ||
+                !exchangeRates.THB
+            ) {
+
+                return;
+
+            }
+
+
+
+            /* USD → THB */
+
+            document.getElementById(
+                "calcThb"
+            ).innerHTML =
+
+                (
+                    amount *
+                    exchangeRates.THB
+                ).toFixed(2)
+
+                + " THB";
+
+
+
+            /* USD → MMK */
+
+            document.getElementById(
+                "calcMmk"
+            ).innerHTML =
+
+                (
+                    amount *
+                    exchangeRates.MMK
+                ).toFixed(2)
+
+                + " MMK";
+
+
+
+            /* USD → JPY */
+
+            document.getElementById(
+                "calcJpy"
+            ).innerHTML =
+
+                (
+                    amount *
+                    exchangeRates.JPY
+                ).toFixed(2)
+
+                + " JPY";
+
+
+
+            /* USD → KRW */
+
+            document.getElementById(
+                "calcKrw"
+            ).innerHTML =
+
+                (
+                    amount *
+                    exchangeRates.KRW
+                ).toFixed(2)
+
+                + " KRW";
+
+        }
+
+
+
+        getCurrency();
+
+
+    </script>
+
+
+</body>
+
+</html>
+
+   
